@@ -4,12 +4,21 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="stylesheet/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style media="screen">
+    .svg {
+          cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.svg"), auto;
+          }
+          .png {
+          cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.png"), auto;
+          }
+
       p {
         font-family: 'Montserrat', sans-serif;
+        font-size: 25px;
       }
       h1{
-        font-family: Practice;
+        font-family: "Practice";
       }
       body{
         background-color:
@@ -52,11 +61,70 @@
       .button{
         display: flex;
       }
+      .p_box{
+        width: 50vw;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+      }
+      .t_wrapper{
+        width: 50vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+
+      }
+      main {
+        background-color: #DDD7FF;
+
+      }
+      .num {
+        font-family: "Practice";
+        font-size: 280px;
+        color: #091DF5;
+      }
+      ol{
+
+      }
+      h1, h2, main p,a{
+        color: #091DF5;
+        text-decoration: none;
+      }
+      main p{
+
+      }
+      h1{
+        font-size: 72px;
+      }
+      ol{
+        font-family: "Montserrat";
+        font-size: 24px;
+        margin-left: 5vw;
+        color: #091DF5;
+        margin-bottom: 10vw;
+        list-style-type: auto;
+      }
+
     </style>
+    <script type="text/javascript">
+    $(function() {
+       $('.sidebar a').each(function() {
+         $(this).on('click', function(e) {
+           e.preventDefault();
+           var scrollTo = $(this).attr('href');
+           var whitespace = scrollTo == '#afishaa' ? 70 : 30;
+           $('html,body').animate({
+             scrollTop: $(scrollTo).offset().top - whitespace
+           }, 1000);
+         });
+       });
+       });
+
+    </script>
   </head>
   <body>
     <div class="start_page">
-      <nav>
+      <nav class="sidebar">
           <a href="#s1">идеи</a>
           <a href="#s2">места</a>
           <a href="#s3">видео</a>
@@ -70,5 +138,38 @@
 
       </div>
     </div>
+
+    <main>
+      <div class="p_box">
+        <p class="num">1.</p>
+          <div class="t_wrapper">
+            <h1>порировать</h1>
+            <p>Можно порисовать на&nbspпленэре либо выучить программы для&nbspрисования на&nbspкомпьютере:
+                Photoshop, Illustrator, Figma</p>
+
+          </div>
+
+<a href="https://draw.demiart.ru">Уроки по рисованию:</a>
+
+
+
+
+
+          <div class="">
+            <p> Полезные ресурсы</p>
+
+          </div>
+
+      </div>
+      <ol type="1">
+         <li><a href="https://draw.demiart.ru">Уроки по рисованию</a></li>
+         <li>Изучить Photoshop</li>
+         <li>Изучить Illustrator</li>
+      </ol>
+
+
+
+    </main>
+    <!-- <div id="cursor"></div> -->
   </body>
 </html>
