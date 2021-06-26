@@ -6,13 +6,10 @@
     <link rel="stylesheet" href="stylesheet/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style media="screen">
-    .svg {
-          cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.svg"), auto;
-          }
-          .png {
-          cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.png"), auto;
-          }
 
+      body{
+        /* cursor: none !important; */
+      }
       p {
         font-family: 'Montserrat', sans-serif;
         font-size: 25px;
@@ -40,7 +37,8 @@
       .start_page{
         background-color: #650D9A;
         width: 100%;
-        height: 1024px;
+        height: 900px;
+        position: relative;
       }
       .start_page h1 {
         width: 70vw;
@@ -53,19 +51,52 @@
       .start_page p {
         color: #EAFF6B;
         font-size: 24px;
-        margin-left: 4vw;
-        margin-top: 4vw;
+
         font-weight: 300;
         display: flex;
       }
       .button{
+        margin-left: 4vw;
+        margin-top: 4vw;
         display: flex;
+        width: 315px;
+        height: 115px;
+        border-radius: 20px;
+        border: none;
+        font-family: "Practice";
+        color: #091DF5;
+        background-color: #EAFF6B;
+        font-size: 64px;
+        justify-content: center;
+        align-items: center;
+        }
+        .arrow{
+          width: 40px;
+          height: 16px;
+          background-image: url("images/arrow.svg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+        .start_page > p{
+          margin-left: 4vw;
+          margin-top: 4vw;
+        }
+      .row {
+        margin-left: 4vw;
+        margin-top: 2vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
       }
       .p_box{
         width: 50vw;
         height: auto;
         display: flex;
         flex-direction: row;
+      }
+      .p_box p {
+        margin-top: 30px;
       }
       .t_wrapper{
         width: 50vw;
@@ -76,15 +107,19 @@
       }
       main {
         background-color: #DDD7FF;
-
+        padding-top: 200px;
+        padding-right: 60px;
+        padding-left: 60px;
+        position: relative;
       }
       .num {
         font-family: "Practice";
         font-size: 280px;
         color: #091DF5;
+        margin-right: 2vw;
       }
-      ol{
-
+      li{
+        margin: 10px;
       }
       h1, h2, main p,a{
         color: #091DF5;
@@ -104,25 +139,146 @@
         margin-bottom: 10vw;
         list-style-type: auto;
       }
+      .cursor{
+        width: 32px;
+        height: 32px;
+        background-color: #EAFF6B;
+        border-radius: 50%;
+        position: absolute;
+        z-index: 40;
+        transition: background-color .2s ease;
+        /* filter: invert(1); */
 
+      }
+      .active{
+        background-color: #EE41FC;
+      }
+      .pic{
+        width: 50vw;
+        height: 40vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      #pic_1{
+        background-image: url("images/pic_1.svg");
+        width: 60vw;
+        right: 1vw;
+        position: absolute;
+        bottom: 4vw;
+      }
+      #pic_2{
+        background-image: url("images/pic_2.svg");
+        width: 60vw;
+        right: 0;
+        top: 20vw;
+        position: absolute;
+      }
+      #pic_3{
+        background-image: url("images/pic_3.svg");
+        width: 60vw;
+        top: 80vw;
+        left: 0;
+        position: absolute;
+      }
+      #pic_4{
+        background-image: url("images/pic_4.svg");
+        width: 60vw;
+        top: 130vw;
+        right:  0;
+        position: absolute;
+      }
+      #pic_5{
+        background-image: url("images/pic_5.svg");
+        width: 60vw;
+        top: 130vw;
+        right:  0;
+        position: absolute;
+      }
+      #pic_6{
+        background-image: url("images/pic_6.svg");
+        width: 60vw;
+        right:  0;
+        position: absolute;
+        bottom: 0;
+        background-position: bottom;
+
+      }
+      .p_2{
+        margin-top: 10vw;
+        margin-left: 30vw;
+      }
+      .p_box ~ .p_2  {
+        width: 60vw;
+      }
+      .p_3{
+        margin-top: 20vw;
+        margin-left: 0;
+      }
+      .check_list{
+        display: flex;
+        flex-direction: column;
+        margin-top: 210px;
+      }
+      .check_item{
+        display: flex;
+        flex-direction: row;
+      }
+      .label{
+        font-family: "Practice";
+      }
+      input{
+        width: 60px;
+        height: 60px;
+        border: 10px solid #650D9A;
+      }
+      ul{
+        font-family: "Montserrat";
+        font-size: 24px;
+        margin-left: 5vw;
+        color: #091DF5;
+        margin-bottom: 10vw;
+        list-style-type: circle;
+      }
     </style>
     <script type="text/javascript">
-    $(function() {
-       $('.sidebar a').each(function() {
-         $(this).on('click', function(e) {
-           e.preventDefault();
-           var scrollTo = $(this).attr('href');
-           var whitespace = scrollTo == '#afishaa' ? 70 : 30;
-           $('html,body').animate({
-             scrollTop: $(scrollTo).offset().top - whitespace
-           }, 1000);
+    $(document).ready(function(){
+
+      $(document).mousemove(function(e) {
+        $('.cursor').css({
+        left:e.pageX - 10,
+        top:e.pageY - 10
+          });
+        });
+        $("li a").mouseover(function(){
+          $(".cursor").addClass("active");
+        });
+        $("li a").mouseout(function(){
+          $(".cursor").removeClass("active");
+        });
+
+
+
+      $(function() {
+         $('.sidebar a').each(function() {
+           $(this).on('click', function(e) {
+             e.preventDefault();
+             var scrollTo = $(this).attr('href');
+             var whitespace = scrollTo == '#afishaa' ? 70 : 30;
+             $('html,body').animate({
+               scrollTop: $(scrollTo).offset().top - whitespace
+             }, 1000);
+           });
          });
-       });
-       });
+         });
+          })
+
 
     </script>
   </head>
   <body>
+    <!-- <div class="cursor"></div> -->
+
     <div class="start_page">
       <nav class="sidebar">
           <a href="#s1">идеи</a>
@@ -131,45 +287,95 @@
       </nav>
       <h1>Чем заняться летом</h1>
       <p>Чеклист занятий на лето в городе:) <br>  + бесплатные полезные ресурсы</p>
-      <p>Погнали</p>
-      <div class="arrow"><img src="images/arrow.svg" alt=""></div>
-      <div class="btn">
-        <button type="button" name="start">start</button>
-
+      <div class="row">
+        <p>Погнали</p>
+        <div class="arrow"></div>
       </div>
+        <button class="button" type="button" name="start">start</button>
+      <div class="pic" id="pic_1"></div>
     </div>
 
     <main>
       <div class="p_box">
-        <p class="num">1.</p>
+          <p class="num">1.</p>
           <div class="t_wrapper">
-            <h1>порировать</h1>
+            <h1>пориcовать</h1>
             <p>Можно порисовать на&nbspпленэре либо выучить программы для&nbspрисования на&nbspкомпьютере:
                 Photoshop, Illustrator, Figma</p>
-
           </div>
+      </div>
 
-<a href="https://draw.demiart.ru">Уроки по рисованию:</a>
-
-
-
-
-
-          <div class="">
-            <p> Полезные ресурсы</p>
-
+            <div class="t_wrapper">
+            <p> Полезные ресурсы:</p>
+            <ol type="1">
+               <li><a href="https://draw.demiart.ru">Уроки по рисованию</a></li>
+               <li><a href="https://videoinfographica.com/photoshop-tutorials/">Изучить Photoshop</a></li>
+               <li><a href="https://www.youtube.com/watch?v=bKZboDrmib4">Изучить Illustrator</a></li>
+            </ol>
           </div>
+          <div class="pic" id="pic_2"></div>
+
+
+
+      <div class="p_box p_2">
+          <p class="num">2.</p>
+          <div class="t_wrapper">
+            <h1>выучить новый язык</h1>
+            <p>За&nbspлето можно научиться читать на&nbspновом языке. Самый поаулярный язык – английский. Если
+                вы&nbspего знаете, предлагаем выучить немецкий или&nbspиспанский языки.</p>
+            <p>Полезные ресурсы:</p>
+            <ol>
+              <li><a href="https://www.duolingo.com">Duolingo</a></li>
+              <li><a href="https://www.mosalingua.com/en/">MosaLingua</a></li>
+            </ol>
+          </div>
+      </div>
+      <div class="pic" id="pic_3"></div>
+
+
+
+
+
+      <div class="p_box p_3">
+          <p class="num">3.</p>
+          <div class="t_wrapper">
+            <h1>дрессировка животных</h1>
+            <p>Можете заняться дрессировкой домашних животных и&nbspпровести с&nbspними больше времени❤️</p>
+            <p>Полезные ресурсы:</p>
+            <ol>
+              <li><a href="https://vse-kursy.com/read/524-osnovy-dressirovki-sobak-10-besplatnyh-videourokov.html">Воспитание и дрессировка собак</a></li>
+              <li><a href="https://www.youtube.com/watch?v=T92JJ9vRyI8">Простой способ научить собаку команде «Фу»</a></li>
+            </ol>
+          </div>
+      </div>
+      <div class="pic" id="pic_4"></div>
+
+
+
+
+      <div class="check_list">
+        <h1>Места для прогулок с друзьями</h1>
+          <label for="park"><input type="checkbox" id="park">парк горького/гараж</label>
+          <label for="artplay"><input type="checkbox" id="artplay">артплей</label>
+          <label for="sad"><input type="checkbox" id="sad">ботанический сад</label>
+
+        <label for=""><input type="checkbox">горького/гараж</label>
 
       </div>
-      <ol type="1">
-         <li><a href="https://draw.demiart.ru">Уроки по рисованию</a></li>
-         <li>Изучить Photoshop</li>
-         <li>Изучить Illustrator</li>
-      </ol>
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aad507e0f45e3d050ed320f0d1bbc60ebc8e465cfddf1ee82f14a9f22b5a6a219&amp;source=constructor" width="500" height="400" frameborder="0"></iframe>
+        <div class="pic"id="pic_5">
 
+        </div>
+        <div class="p_4">
+          <h1>не забываемпро сериалыи youtube</h1>
+          <ul>
+            <li>ВАМ это НЕ НУЖНО! Скевоморфизм — ТОПЛЕС</li>
+          </ul>
 
+          </div>
+        </div>
+        <div class="pic" id="pic_6">
 
     </main>
-    <!-- <div id="cursor"></div> -->
   </body>
 </html>
